@@ -41,14 +41,20 @@ rustPlatform.buildRustPackage (finalAttrs: {
 
   __structuredAttrs = true;
 
-  # Match upstream's release build for the codex binary only.
+  # Match upstream's release build for the codex binary, plus the
+  # codex-code-mode-host binary required by models with a `tool_mode` of
+  # `code_mode_only`.
   cargoBuildFlags = [
     "--package"
     "codex-cli"
+    "--package"
+    "codex-code-mode-host"
   ];
   cargoCheckFlags = [
     "--package"
     "codex-cli"
+    "--package"
+    "codex-code-mode-host"
   ];
 
   postPatch = ''
